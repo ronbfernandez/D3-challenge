@@ -37,7 +37,7 @@ console.group(healthData)
     var xLinearScale = d3.scaleLinear().range([0, width]);
     yLinearScale = d3.scaleLinear().range([height, 0]);
 
-// Create axis funcitons
+// Create axis functions
     var bottomAxis = d3.axisBottom(xLinearScale);
     var leftAxis = d3.axisLeft(yLinearScale);
 
@@ -67,5 +67,28 @@ console.group(healthData)
     console.log(xMin);
     console.log(yMax);
 
+// Append Axes to the chart
+    chartGroup.append("g")
+     .attr("transform", 'translate(0, ${height})')
+     .call(bottomAxis);
+    
+    chartGroup.append("g")
+    .call(leftAxis);
 
+// Creating Circles
+    var circlesGroup = chartGroup.selectAll("circle")
+    .data(healthData)
+    .enbter()
+    .append("circle")
+    .attr("cx", d => xLinearScale(d.healthcare +1.5))
+    .attr("cy", d => yLinearScale(d.poverty +0.3))
+    .attr("r", "12")
+    .attr("fill", "blue")
+    .attr("opacity", .5)
+
+    .on("mouseout", function(data, index) {
+        toolTip.hide(data);
+    });
+
+    
 });
