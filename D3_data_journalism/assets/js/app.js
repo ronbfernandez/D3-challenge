@@ -34,5 +34,38 @@ console.group(healthData)
     });
 
 //  Create scale functions
-    var xLinearScale = d3
+    var xLinearScale = d3.scaleLinear().range([0, width]);
+    yLinearScale = d3.scaleLinear().range([height, 0]);
+
+// Create axis funcitons
+    var bottomAxis = d3.axisBottom(xLinearScale);
+    var leftAxis = d3.axisLeft(yLinearScale);
+
+    var xMin;
+    var xMax;
+    var yMin;
+    var yMax;
+
+    xMin = d3.min(healthData, function(data) {
+        return data.healthcare;
+    });
+    
+    xMax = d3.max(healthData, function(data) {
+        return data.healthcare;
+    });
+
+    yMin = d3.min(healthData, function(data) {
+        return data.healthcare;
+    });
+
+    yMax = d3.max(healthData, function(data) {
+        return data.healthcare;
+    });
+
+    xLinearScale.domain([xMin, xMax]);
+    yLinearScale.domain([yMin, yMax]);
+    console.log(xMin);
+    console.log(yMax);
+
+
 });
