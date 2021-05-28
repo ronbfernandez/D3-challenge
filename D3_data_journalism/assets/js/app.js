@@ -28,6 +28,11 @@ d3.csv("data.csv", function(err, healthData) {
 console.group(healthData)
 
 // Parse Data
+    healthData.forEach(function(data) {
+        data.poverty = +data.poverty;
+        data.healthcare = +data.healthcare;
+    });
 
-
+//  Create scale functions
+    var xLinearScale = d3
 });
