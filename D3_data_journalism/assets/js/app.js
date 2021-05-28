@@ -129,5 +129,16 @@ console.log(healthData)
             return data.abbr
         });
 
-    chart
+    chartGroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left + 40)
+        .atr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .attr("class", "axisText")
+        .text("Lacks Healthcare(%)");
+
+    chartGroup.append("g")
+    .attr("transform", `translate($width / 2}, ${height + margin.top + 30})`)
+    .attr("class", "axisText")
+    .text("In Poverty (%)");
 });
