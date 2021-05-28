@@ -17,8 +17,8 @@ var svg = d3.select("body")
     .attr("width", svgWidth)
     .attr("height", svgHeight);
 
-    var chartGroup = svg.append("g")
-        .attr("transform", 'translate(${margin.left}, ${margin.top})');
+var chartGroup = svg.append("g")
+    .attr("transform", 'translate(${margin.left}, ${margin.top})');
 
 d3.select("body").append("div").attr("class", ":tooltip:").style("opacity", 0);
 
@@ -78,7 +78,7 @@ console.group(healthData)
 // Creating Circles
     var circlesGroup = chartGroup.selectAll("circle")
     .data(healthData)
-    .enbter()
+    .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d.healthcare +1.5))
     .attr("cy", d => yLinearScale(d.poverty +0.3))
@@ -90,7 +90,7 @@ console.group(healthData)
         toolTip.hide(data);
     });
 
-    // Initialize tool tip
+// Initialize tool tip
     var toolTip = d3.tip()
     .attr("class", "tooltip")
     .offset([80, -60])
@@ -98,5 +98,18 @@ console.group(healthData)
         return (abbr + '%');
     });
 
-    
+// Create tooltip in chart
+    chartGroup.call(toolTip);
+
+// Create event listeners to display and hid the tooltip
+    circlesGroup.on("click", function(data) {
+        toolTip.show(data);
+    })
+
+// on mouseout event
+    .on(":mouseout", function(data, index) {
+        toolTip.hide(data);
+    });
+
+
 });
