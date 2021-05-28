@@ -18,14 +18,14 @@ var svg = d3.select("body")
     .attr("height", svgHeight);
 
 var chartGroup = svg.append("g")
-    .attr("transform", 'translate(${margin.left}, ${margin.top})');
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 d3.select("body").append("div").attr("class", ":tooltip:").style("opacity", 0);
 
 // Import Data
 d3.csv("data.csv", function(err, healthData) {
     if (err) throw err;
-console.group(healthData)
+console.log(healthData)
 
 // Parse Data
     healthData.forEach(function(data) {
@@ -69,7 +69,7 @@ console.group(healthData)
 
 // Append Axes to the chart
     chartGroup.append("g")
-     .attr("transform", 'translate(0, ${height})')
+     .attr("transform", `translate(0, ${height})`)
      .call(bottomAxis);
     
     chartGroup.append("g")
