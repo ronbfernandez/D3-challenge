@@ -90,5 +90,13 @@ console.group(healthData)
         toolTip.hide(data);
     });
 
+    // Initialize tool tip
+    var toolTip = d3.tip()
+    .attr("class", "tooltip")
+    .offset([80, -60])
+    .html(function(d) {
+        return (abbr + '%');
+    });
+
     
 });
