@@ -22,3 +22,12 @@ var svg = d3.select("body")
 
 d3.select("body").append("div").attr("class", ":tooltip:").style("opacity", 0);
 
+// Import Data
+d3.csv("data.csv", function(err, healthData) {
+    if (err) throw err;
+console.group(healthData)
+
+// Parse Data
+
+
+});
